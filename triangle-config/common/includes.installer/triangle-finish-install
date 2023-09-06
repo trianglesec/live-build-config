@@ -13,7 +13,7 @@ configure_sources_list() {
 	return
     fi
 
-    echo "INFO: sources.list is empty, setting up a default one for Kali"
+    echo "INFO: sources.list is empty, setting up a default one for Triangle"
 
     cat >/etc/apt/sources.list <<END
 # See https://www.trianglesec.github.io/docs/general-use/trianglesec-sources-list-repositories/

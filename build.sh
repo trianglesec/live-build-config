@@ -5,7 +5,7 @@ set -e
 # Use return code for any command errors in part of a pipe
 set -o pipefail # Bashism
 
-# Kali's default values
+# Triangle's default values
 TRIANGLE_DIST="triangle-skel"
 TRIANGLE_VERSION=""
 TRIANGLE_VARIANT="default"
@@ -223,7 +223,7 @@ debug "IMAGE_TYPE: $IMAGE_TYPE"
 case "$IMAGE_TYPE" in
 	live)
 		if [ ! -d "$(dirname $0)/triangle-config/variant-$TRIANGLE_VARIANT" ]; then
-			echo "ERROR: Unknown variant of Kali live configuration: $TRIANGLE_VARIANT" >&2
+			echo "ERROR: Unknown variant of Triangle live configuration: $TRIANGLE_VARIANT" >&2
 		fi
 
 		ver_live_build=$(dpkg-query -f '${Version}' -W live-build)
@@ -242,7 +242,7 @@ case "$IMAGE_TYPE" in
 	;;
 	installer)
 		if [ ! -d "$(dirname $0)/triangle-config/installer-$TRIANGLE_VARIANT" ]; then
-			echo "ERROR: Unknown variant of Kali installer configuration: $TRIANGLE_VARIANT" >&2
+			echo "ERROR: Unknown variant of Triangle installer configuration: $TRIANGLE_VARIANT" >&2
 		fi
 
 		ver_debian_cd=$(dpkg-query -f '${Version}' -W debian-cd)

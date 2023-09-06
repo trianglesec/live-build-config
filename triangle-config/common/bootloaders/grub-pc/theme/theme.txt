@@ -51,7 +51,7 @@ terminal-border: "0"
   align = "center"
   color = "#ffffff"
   font = "Sans 16"
-  text = "Kali Linux live menu (UEFI mode)"
+  text = "Triangle Linux live menu (UEFI mode)"
 }
 
 + boot_menu {

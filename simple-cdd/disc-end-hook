@@ -18,15 +18,15 @@ cp -r $BASEDIR/../../triangle-config/common/bootloaders/grub-pc/theme \
 cd $CDDIR
 
 fix_branding() {
-    sed -i -e 's|Debian GNU/Linux|Kali Linux|g' \
-	-e 's|Kali GNU/Linux|Kali Linux|g' \
-	-e 's|Debian triangle-skel|Kali Rolling|g' \
-	-e 's|Debian|Kali|g' \
+    sed -i -e 's|Debian GNU/Linux|Triangle Linux|g' \
+	-e 's|Triangle GNU/Linux|Triangle Linux|g' \
+	-e 's|Debian triangle-skel|Triangle Rolling|g' \
+	-e 's|Debian|Triangle|g' \
 	-e 's|DEBIAN|TRIANGLE|g' \
 	"$@"
 }
 
-# Rebrand Debian into Kali
+# Rebrand Debian into Triangle
 if [ -e ../boot$DISKNUM/isolinux/menu.cfg ]; then
     fix_branding ../boot$DISKNUM/isolinux/menu.cfg \
 		 ../boot$DISKNUM/isolinux/*.txt
@@ -41,15 +41,15 @@ rm -f autorun.inf win32-loader.ini setup.exe
 # Replace Debian specific documentation
 rm -rf css
 cat >README.txt <<EOF
-This disc contains an installer for Kali Linux.
+This disc contains an installer for Triangle Linux.
 
 Read more at: https://www.trianglesec.github.io
 EOF
 cat >README.html <<EOF
 <html>
-<head><title>Kali Linux Installer Disc</title></head>
+<head><title>Triangle Linux Installer Disc</title></head>
 <body>
-This disc contains an installer for Kali Linux.
+This disc contains an installer for Triangle Linux.
 
 Read more at: <a href="https://www.trianglesec.github.io">www.trianglesec.github.io</a>
 </body>
