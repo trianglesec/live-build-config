@@ -1,0 +1,23 @@
+# Full installer image
+# It should contain everything offered in tasksel
+# during initial installation so all trianglesec-* except:
+# - trianglesec-everything
+
+# Metapackages
+# You can customize the set of Kali metapackages (groups of tools) available
+# in the installer ISO.
+# For the complete list see: https://tools.trianglesec.github.io/triangle-metapackages
+trianglesec-firmware
+trianglesec-core
+triangle-tools-top10
+trianglesec-default
+
+# NOTE: We would like to provide trianglesec-large in our installer images
+# but we end up with ISO images that are too big for our CDN. So disable
+# it for now.
+# trianglesec-large
+
+# Graphical desktops
+triangle-desktop-xfce
+triangle-desktop-gnome
+triangle-desktop-kde

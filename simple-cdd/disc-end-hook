@@ -1,0 +1,68 @@
+#!/bin/sh
+
+set -e
+
+TDIR=$1
+MIRROR=$2
+DISKNUM=$3
+CDDIR=$4
+ARCHES=$5
+
+# Copy grub theme assets
+# Until debian-cd picks them from d-i automatically:
+# http://bugs.debian.org/1003927
+cp -r $BASEDIR/../../triangle-config/common/bootloaders/grub-pc/theme \
+      $BASEDIR/../../triangle-config/common/bootloaders/grub-pc/splash.png \
+      $CDDIR/boot/grub/
+
+cd $CDDIR
+
+fix_branding() {
+    sed -i -e 's|Debian GNU/Linux|Kali Linux|g' \
+	-e 's|Kali GNU/Linux|Kali Linux|g' \
+	-e 's|Debian triangle-skel|Kali Rolling|g' \
+	-e 's|Debian|Kali|g' \
+	-e 's|DEBIAN|TRIANGLE|g' \
+	"$@"
+}
+
+# Rebrand Debian into Kali
+if [ -e ../boot$DISKNUM/isolinux/menu.cfg ]; then
+    fix_branding ../boot$DISKNUM/isolinux/menu.cfg \
+		 ../boot$DISKNUM/isolinux/*.txt
+fi
+if [ -d boot/grub/theme ] && [ -s boot/grub/theme ]; then
+    fix_branding boot/grub/theme/*
+fi
+
+# Remove Debian's windows loader
+rm -f autorun.inf win32-loader.ini setup.exe
+
+# Replace Debian specific documentation
+rm -rf css
+cat >README.txt <<EOF
+This disc contains an installer for Kali Linux.
+
+Read more at: https://www.trianglesec.github.io
+EOF
+cat >README.html <<EOF
+<html>
+<head><title>Kali Linux Installer Disc</title></head>
+<body>
+This disc contains an installer for Kali Linux.
+
+Read more at: <a href="https://www.trianglesec.github.io">www.trianglesec.github.io</a>
+</body>
+</html>
+EOF
+
+# Replace triangle-last-snapshot with triangle-skel
+if [ -e dists/triangle-last-snapshot ]; then
+    mv dists/triangle-last-snapshot dists/triangle-skel
+    rm -f dists/stable && ln -sf triangle-skel dists/stable
+    sed -i -e 's|triangle-last-snapshot|triangle-skel|g' \
+	dists/triangle-skel/Release
+fi
+
+# Redo the md5sum.txt due to our changes
+find . -type f | grep -v ./md5sum.txt | xargs md5sum | sort -uk2 > md5sum.txt

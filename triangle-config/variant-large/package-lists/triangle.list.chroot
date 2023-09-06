@@ -1,0 +1,19 @@
+# Live image
+# You always want these:
+trianglesec-core
+triangle-desktop-live
+
+# Metapackages
+# You can customize the set of Kali metapackages (groups of tools) to install
+# For the complete list see: https://tools.trianglesec.github.io/triangle-metapackages
+#trianglesec-core
+#triangle-tools-top10
+#trianglesec-default
+trianglesec-large
+#trianglesec-everything
+
+# Graphical desktop
+triangle-desktop-xfce
+
+# Kali applications
+#<package>

@@ -1,0 +1,6 @@
+#!/bin/sh
+
+# Run the triangle-finish-install script to configure the target system
+cp /triangle-finish-install /target/
+in-target /triangle-finish-install || true
+rm -f /target/triangle-finish-install

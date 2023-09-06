@@ -1,0 +1,21 @@
+# Installer for Kali Purple
+
+# Metapackages
+# You can customize the set of Kali metapackages (groups of tools) available
+# in the installer ISO.
+# For the complete list see: https://tools.trianglesec.github.io/triangle-metapackages
+trianglesec-firmware
+triangle-system-gui
+triangle-themes-purple  # temporary, until we do it a better way
+
+# Tools
+triangle-tools-detect
+triangle-tools-identify
+triangle-tools-protect
+triangle-tools-recover
+triangle-tools-respond
+
+# Graphical desktops
+triangle-desktop-xfce
+triangle-desktop-gnome
+triangle-desktop-kde
